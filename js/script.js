@@ -54,3 +54,23 @@ const observer = new IntersectionObserver(
 document.querySelectorAll(".section").forEach(section => {
     observer.observe(section);
 });
+
+
+
+// Click-to-expand images (lightbox)
+const lightbox = document.querySelector(".image-lightbox");
+const lightboxImg = lightbox ? lightbox.querySelector("img") : null;
+
+if (lightbox && lightboxImg) {
+    document.querySelectorAll(".zoom-trigger").forEach(img => {
+        img.addEventListener("click", () => {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt || "";
+            lightbox.classList.add("open");
+        });
+    });
+
+    lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("open");
+    });
+}
